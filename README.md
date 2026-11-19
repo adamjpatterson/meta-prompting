@@ -10,7 +10,9 @@ instructions.
 
 ## Use
 
-The assistant may use the skill when context shaping would help the current task.
+The skill instructs the assistant to initiate an inquiry when work repeats without
+progress, relies on an untested premise, accumulates complexity, or drifts from
+the goal. It can reconsider the approach while preserving your objective.
 You can also request it directly:
 
 > Use $meta-prompting to develop an approach to [your problem]. Allow up to four
