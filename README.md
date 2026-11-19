@@ -6,7 +6,9 @@ active conversation. The assistant chooses each next prompt and calls
 
 ## Introduction
 
-This is an experimental skill aimed at exploring how instruction hierarchy influences context. Each message in the conversation is associated with a particular role (system, developer, user, assistant, tool, and so on). These roles carry different levels of authority within the model's instruction hierarchy. The agent's self-generated prompts are injected under the user role rather than the assistant role. Because user-role instructions have higher priority than assistant-role content, the agent can effectively introduce its own instructions at a higher level of authority than it would ordinarily possess.
+This is an experimental skill aimed at exploring how instruction hierarchy influences context. Each message in the conversation is associated with a particular role (system, developer, user, assistant, tool, and so on). These roles carry different levels of authority within the model's instruction hierarchy.
+
+This skill lets the agent submit its self-generated prompts under the user role rather than the assistant role. This gives those prompts greater instructional priority than they would have as ordinary assistant messages.
 
 The hypothesis is that this may allow the agent to correct unproductive trajectories.
 
