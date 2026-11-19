@@ -1,6 +1,6 @@
 # Meta-prompting
 
-A skill for constructing useful context through self-generated prompts in the
+A Codex skill for constructing useful context through self-generated prompts in the
 active conversation. The assistant chooses each next prompt and calls
 `codex queue` directly to deliver its exact text as user input to the same thread.
 
