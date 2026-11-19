@@ -135,8 +135,15 @@ checks performed and their results.
 `codex queue` needs to communicate with the local Codex app server. A restricted
 execution environment may block access to the server's local files or connection.
 In our development environment, the command worked when run with broader host
-permissions. If this happens, the assistant should report the error and use the
-host's normal approval process for the required access.
+permissions. An explicit error such as `failed to start embedded app server:
+Read-only file system` occurs during startup, before message submission. The
+skill instructs the assistant to use the host's normal permission process to
+resolve that failure and retry the same prompt once. The error need not identify
+the exact write path to distinguish this startup failure from an uncertain send.
+
+A timeout or lost connection can leave submission uncertain. In that case, the
+assistant should inspect delivery evidence rather than automatically resending.
+If the host cannot grant the needed access, the assistant reports the blocker.
 
 ## State and stopping
 
