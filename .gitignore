@@ -1,0 +1,15 @@
+# Python bytecode and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local credentials
+.env
+.env.*
+
+# Local run records and test caches
+/runs/
+.pytest_cache/
+.coverage
+htmlcov/
