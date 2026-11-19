@@ -38,7 +38,8 @@ A two-prompt inquiry examined installation guidance. The first response separate
 skill discovery from delivery to the active conversation. The second prompt was
 then composed to ask for a minimal check of delivery, response, and stopping.
 Both arrived as user input in the same conversation. The inquiry ended at its
-two-prompt allowance and produced the one-prompt first-use check in the README.
+two-prompt allowance and produced the one-prompt first-use check now documented
+in the repository README.
 
 ## Early-completion observation
 
