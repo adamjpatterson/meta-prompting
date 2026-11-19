@@ -28,8 +28,17 @@ reconsider assumptions, or bring a wandering conversation back to its goal.
 
 ## Use
 
-The assistant may initiate an inquiry when it would help the current task. You
-can also ask explicitly:
+The skill instructs the assistant to notice when the current approach needs
+reconsideration and initiate an inquiry without waiting for you to request one.
+Typical signals include repeated attempts without progress, an untested premise,
+growing complexity, or drift from your objective.
+
+The assistant can question its own assumptions, distinguish a proposed solution
+from your underlying goal, and construct a different framing for the next step.
+Definitions, names, and maps it develops remain revisable. Routine tasks with a
+clear approach can proceed directly.
+
+You can also ask explicitly:
 
 > Use $meta-prompting to develop an approach to [your problem]. Allow up to four
 > prompts and stop when there is a concrete next action.

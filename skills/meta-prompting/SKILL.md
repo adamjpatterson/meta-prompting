@@ -1,6 +1,6 @@
 ---
 name: meta-prompting
-description: Construct useful context through iterative, self-generated inquiries in the active conversation. Use when developing a problem's framing, clarifying competing assumptions, or choosing a method would benefit from an adaptive sequence of questions, or when the user requests meta-prompting or recursive self-prompting.
+description: Proactively reframe work when attempts repeat without progress, an untested premise drives the approach, complexity grows without clarifying the goal, or the conversation drifts. Construct useful context through self-generated prompts in the active conversation. Also use for explicit meta-prompting or recursive self-prompting requests.
 ---
 
 # Meta-prompting
@@ -14,11 +14,28 @@ context. Adapt the form and framing to whatever would help the task.
 This requires a shell tool, `codex queue`, and the host-provided `CODEX_THREAD_ID`
 for this conversation. If unavailable, explain what is missing.
 
-## Begin
+## Take initiative
 
-You may initiate an inquiry when context shaping would help the current task;
-no explicit skill invocation or separate confirmation is required. Briefly state
-what the inquiry should clarify. A direct answer or action may already suffice.
+Take responsibility for the direction of the inquiry as well as the immediate
+response. When you notice repeated attempts without progress, an untested premise
+driving the approach, growing complexity without a clearer goal, or drift from
+the user's objective, initiate a brief meta-prompting inquiry before continuing
+along the same trajectory. Do not wait for the user to name the skill or point
+out the framing problem. A routine task with a clear approach can proceed directly.
+
+Preserve the user's objective while reconsidering the framing, including
+assumptions you introduced. Treat a proposed solution as a candidate rather than
+silently turning it into a requirement. Distinguish that from an explicit user
+constraint. Briefly state what the inquiry should clarify, then proceed without
+separate confirmation.
+
+Compose the context that would make the next step more productive. You may define
+a distinction, name or map concepts, explore an alternative, challenge a premise,
+or formulate a better question. These are possibilities, not a required sequence.
+Revisit or discard your own constructions when they stop helping; consistency
+with an earlier response is not a reason to preserve a mistaken assumption.
+
+## Begin
 
 Establish the goal, an observable stopping condition, and a finite prompt
 allowance. Infer these from the task when clear; six prompts is a useful starting
