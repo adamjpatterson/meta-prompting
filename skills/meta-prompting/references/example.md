@@ -1,7 +1,6 @@
 # An illustrative inquiry
 
-This is an example of how an inquiry could develop, not a measured result or a
-sequence to copy in advance.
+This illustrative inquiry shows how each response can suggest the next prompt.
 
 The user wants to improve a document but has not defined what “better” means.
 The assistant establishes a two-prompt allowance and a stopping condition: one
@@ -22,5 +21,5 @@ a passage to revise and proposes a check: ask a reader to locate and explain the
 first action using only the revised document.
 
 Both prompts have been used. The assistant delivers the recommendation and check,
-then returns to the original task. No run files or finish command are needed.
-The count and the inquiry's outcome remain in the conversation.
+then returns to the original task. The count and outcome remain in the
+conversation.

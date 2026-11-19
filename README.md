@@ -3,10 +3,9 @@
 A skill for constructing useful context through self-generated prompts in the
 active conversation. The assistant chooses each next prompt and calls
 `codex queue` directly to deliver its exact text as user input to the same thread.
-No Python relay or project-local run files are required.
 
-Read the [skill README](skills/meta-prompting/README.md) for how it works and its
-limitations. [SKILL.md](skills/meta-prompting/SKILL.md) contains the operating
+Read the [skill README](skills/meta-prompting/README.md) for how it works and how
+to install it. [SKILL.md](skills/meta-prompting/SKILL.md) contains the operating
 instructions.
 
 ## Use
@@ -26,7 +25,7 @@ symlink to `skills/meta-prompting`. Automatic skill selection is enabled. If you
 client does not discover it, ask the assistant to read the SKILL.md directly.
 
 For installation in another project, see the [installation instructions](skills/meta-prompting/README.md#install-in-another-project).
-Tested compatibility and limitations are recorded in the [validation notes](skills/meta-prompting/references/validation.md).
+Development checks are recorded in the [validation notes](skills/meta-prompting/references/validation.md).
 
 ## Layout
 
@@ -43,10 +42,18 @@ skills/meta-prompting/
 
 ## Development
 
-Validate skill metadata with the skill-creator validator available in your Codex
-installation. Evaluate delivery in a bounded live inquiry: distinguish queue
-acceptance from actual arrival, and check that the assistant stops at the stated
-allowance. There is no relay test suite or script-enforced turn counter.
+The skill's behavior is defined in `skills/meta-prompting/SKILL.md`. Keep that
+file and the human-facing README consistent when changing the workflow.
+
+After editing, check that documentation links resolve and that the skill's name
+and description remain valid. If your Codex installation includes the
+skill-creator validator, use it to check the package metadata.
+
+For workflow changes, try a short inquiry in an active Codex conversation. Verify
+that each queued prompt arrives in the same conversation, that the next prompt
+builds on the preceding response, and that the inquiry stops at its goal or
+prompt allowance. Record the environment and observations in the
+[validation notes](skills/meta-prompting/references/validation.md).
 
 ## License
 

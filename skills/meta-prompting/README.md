@@ -6,7 +6,7 @@ delivers that prompt as user input in the same conversation. Each next prompt is
 chosen from the context that develops.
 
 The prompt may be a question, instruction, definition, or other useful context.
-Its wording is fully assistant-controlled; there is no required label or wrapper.
+The assistant chooses both its wording and form to suit the task.
 
 ## How it works
 
@@ -21,11 +21,9 @@ flowchart TD
     F -->|No| G[Deliver the result and return to the task]
 ```
 
-This is a skill made of instructions, not a separate model runner. The host
-supplies model execution and message delivery. Live development tests confirmed
-that queued messages arrived as user-role input in the same conversation and
-received responses. That establishes the delivery mechanism in the tested host,
-not a general reasoning advantage or knowledge of internal token serialization.
+Codex supplies model execution and message delivery. The skill guides the
+assistant in choosing prompts and using their responses to clarify the task,
+reconsider assumptions, or bring a wandering conversation back to its goal.
 
 ## Use
 
@@ -36,9 +34,8 @@ can also ask explicitly:
 > there is one concrete recommendation and a practical way to evaluate it.
 
 The host must support shell commands, provide `codex queue`, and expose
-`CODEX_THREAD_ID` for the active conversation. No Python installation, separate
-model, or additional API key is required by the skill. Host execution permissions
-still apply, and delivery support is not assumed for other clients.
+`CODEX_THREAD_ID` for the active conversation. The skill operates through the
+existing Codex session.
 
 The assistant operates the queue; you do not need to paste its prompts. For example,
 it can submit a prompt using Bash:
@@ -51,68 +48,93 @@ codex queue --thread "${CODEX_THREAD_ID:?Current thread is unavailable}" \
 The assistant then ends its turn. A successful command establishes acceptance;
 actual arrival must be observed in the conversation before continuing.
 
-This repository registers the skill using `.agents/skills/meta-prompting`, a
-symlink to this folder. Automatic selection is enabled in `agents/openai.yaml`;
-explicit `$meta-prompting` invocation remains available. If discovery is unavailable,
-ask the assistant to read [SKILL.md](SKILL.md) directly.
+## How Codex finds the skill
+
+The source package lives in `skills/meta-prompting/`. Codex looks for project
+skills in `.agents/skills/`, so this repository includes a symbolic link at
+`.agents/skills/meta-prompting` pointing to the source package. A symbolic link
+acts as a shortcut: Codex reads the same files you edit, without a second copy.
+
+`agents/openai.yaml` enables automatic selection. This lets the assistant choose
+meta-prompting when it would help your task. You can still request it explicitly
+with `$meta-prompting`. If it is missing from the skill selector, restart Codex,
+or ask the assistant to read [SKILL.md](SKILL.md) and follow it directly.
+
+This layout separates the distributable package from its local discovery path.
+The [Agent Skills specification](https://agentskills.io/specification) defines the
+package format; [Codex's skill guide](https://learn.chatgpt.com/docs/build-skills#where-to-save-skills)
+defines the installation locations and supports symbolic links. The outer
+`skills/` directory is an organizational choice, not a required repository layout.
 
 ## Install in another project
 
-Copy this entire `meta-prompting` folder, including `LICENSE`, into the destination
-project as `.agents/skills/meta-prompting/`. Do not copy the development
-repository's discovery symlink; its relative target belongs to that checkout.
-If a folder with that name already exists, inspect it before replacing anything.
+Install the package by copying one folder:
 
-For personal use across projects, the alternative destination is
-`~/.agents/skills/meta-prompting/`. Choose one location to avoid duplicate entries.
-These locations follow the [Codex local skill discovery guide](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills).
+1. Download or clone [adamjpatterson/meta-prompting](https://github.com/adamjpatterson/meta-prompting).
+2. In the project where you want to use the skill, create `.agents/skills/` if it
+   does not already exist.
+3. Copy `skills/meta-prompting/` from this repository into that directory. Copy
+   the whole folder, including `LICENSE`; the result should look like this:
 
-In the destination project, open Codex and check `/skills` or mention
-`$meta-prompting`. If it does not appear, restart Codex. Check `codex queue --help`
-in the execution environment; discovery alone does not establish that the host
-can deliver messages to the active thread.
+   ```text
+   your-project/
+     .agents/
+       skills/
+         meta-prompting/
+           SKILL.md
+           README.md
+           LICENSE
+           agents/
+           references/
+   ```
 
-After installation, try this bounded check:
+4. Open Codex in the destination project and look for `meta-prompting` in
+   `/skills`, or type `$meta-prompting`. Restart Codex if it does not appear.
+
+Copy the source folder in step 3, not this repository's symbolic link. If the
+destination already contains `meta-prompting`, review that installation before
+replacing it.
+
+To make the skill available across your projects instead, copy the same folder
+to `~/.agents/skills/meta-prompting/`. Choose either a project installation or a
+personal installation to avoid duplicate entries.
+
+### Try it
+
+Ask the assistant to check that `codex queue --help` works in its execution
+environment, then try:
 
 > Use $meta-prompting for a one-prompt delivery check. Queue the question
 > “What is the purpose of this skill?” to this conversation, respond when it
 > arrives, then stop without queueing another prompt.
 
-Look for the queued question arriving as a new user-input message in the same
-conversation, followed by a response and no further send. A successful queue
-command alone is insufficient. Passing this check demonstrates delivery and one
-instance of stopping in your environment; it does not prove general reliability
-or better reasoning.
+You should see the question arrive as a new user-input message in the same
+conversation, followed by the assistant's response. The inquiry should end there.
 
 ## Compatibility and validation
 
-Development checks used Codex CLI **0.169.0** on Linux with Bash and a connected
-active Codex conversation. This is a tested version, not a minimum-version claim.
-Other versions, operating systems, and host configurations have not been verified.
-In the tested sandbox, queueing needed permission to access the local app server
-outside the restricted filesystem. The skill does not bypass host permissions.
+Development checks used Codex CLI **0.169.0** on Linux with Bash and an active
+Codex conversation. See the [validation notes](references/validation.md) for the
+checks performed and their results.
 
-See [validation notes](references/validation.md) for observed results and pending
-checks. This is an experimental context-shaping capability; no general reasoning
-improvement is claimed.
+### If queueing is blocked
+
+`codex queue` needs to communicate with the local Codex app server. A restricted
+execution environment may block access to the server's local files or connection.
+In our development environment, the command worked when run with broader host
+permissions. If this happens, the assistant should report the error and use the
+host's normal approval process for the required access.
 
 ## State and stopping
 
-The goal, stopping condition, number of prompts sent, and pending prompt remain
-in the conversation. The skill creates no run directories or per-prompt files.
-Codex may retain its own session and queue data; removing skill-specific records
-does not disable host storage.
+The assistant keeps the goal, prompt allowance, and pending prompt in the
+conversation. It sends one prompt at a time and stops when the goal is met or the
+allowance is exhausted. The assistant tracks this allowance itself.
 
-The assistant follows a finite allowance, counts the initial prompt, keeps one
-prompt pending, and stops when the goal is met or the allowance is exhausted.
-These are behavioral instructions, not programmatic enforcement. An uncertain
-send must not be retried automatically because it may already have been accepted.
-If context is lost or the pending prompt cannot be identified, the assistant
-stops rather than reconstructing the state by guesswork.
-
-This simpler design gives up independent counters and durable delivery records.
-Research notes or results can still be saved when requested, in a location chosen
-for that task. There is no logging subsystem or default output directory.
+If sending fails with an uncertain outcome, the assistant stops instead of
+retrying automatically: the prompt may already have been accepted. It also
+respects new user directions, including a request to stop while a prompt is
+pending.
 
 ## Package
 

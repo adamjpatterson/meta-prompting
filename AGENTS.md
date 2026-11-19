@@ -11,14 +11,11 @@ This repository develops the `meta-prompting` skill.
 
 Keep the skill portable and allow bounded inquiries when useful to the current
 task. The assistant composes prompts; `codex queue` delivers them to the same
-conversation. Keep runtime state in the conversation rather than creating
-mandatory project-local records. Turn limits are behavioral instructions, not
-script-enforced guarantees.
+conversation. The assistant tracks the goal, pending prompt, and allowance in
+the conversation.
 
 Validate metadata and links after edits. For delivery changes, use a bounded live
 check when needed and distinguish queue acceptance from observed arrival. Do not
 invoke a separate model as a substitute for testing this assistant's workflow.
-There is no evidence yet of a general performance advantage.
 
-Earlier implementations remain in Git history. Preserve existing ignored research
-records unless the user requests their removal.
+Preserve existing research records unless the user requests their removal.
