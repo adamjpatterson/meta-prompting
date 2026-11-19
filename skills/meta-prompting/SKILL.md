@@ -47,8 +47,20 @@ result only confirms queue acceptance. Keep only one prompt pending at a time.
 When it arrives, use the conversation to associate it with the pending prompt.
 Respect newer user directions; a delayed prompt must not restart a stopped inquiry.
 If the pending prompt, count, or goal is unclear, stop and explain the uncertainty
-rather than guessing. If a send fails or has an uncertain outcome, do not retry
-automatically: it might already have been accepted.
+rather than guessing.
+
+Distinguish failure before submission from an uncertain delivery outcome. If
+`codex queue` explicitly fails to start its app server (for example, with a
+read-only-filesystem error), resolve the startup problem through the host's normal
+permission or approval process, then retry the same prompt once. A confirmed
+pre-submission failure does not consume the prompt allowance. Do not invent the
+blocked path or change the thread or Codex home to work around the error. If the
+retry also fails, report the blocker rather than repeatedly retrying.
+
+If the command times out, loses its connection after submission may have begun,
+or otherwise leaves acceptance uncertain, do not resend automatically: the prompt
+might already be queued. Inspect available delivery evidence before deciding how
+to recover. Absence of a success message alone does not prove non-submission.
 
 Address the prompt with a substantive public contribution, then judge whether
 another prompt would help. Develop useful distinctions, definitions, hypotheses,
