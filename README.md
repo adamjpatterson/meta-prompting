@@ -10,16 +10,23 @@ instructions.
 
 ## Installation
 
-For a **user-account installation** available across your projects, enter this
-in the **Codex chat box**:
+### User-account installation
+
+Open Codex, then enter this in the Codex chat box:
 
 ```text
 Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting
 ```
 
-For a **project-local installation**, open Codex in that project and ask the
-installer to use `--dest` with the project's `.agents/skills` directory.
-“Global” installation here means your user account, not all users on the computer.
+### Project-local installation
+
+Open Codex in the destination project, then enter this in the Codex chat box:
+
+```text
+Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting into this project's .agents/skills directory using --dest.
+```
+
+### Troubleshooting
 
 If the skill does not appear in `/skills`, restart Codex. See
 [installation and updating](skills/meta-prompting/README.md#install) for both
@@ -37,12 +44,12 @@ You can also request it directly:
 
 The request has four parts:
 
-| Part | Example | Purpose |
-| --- | --- | --- |
-| Skill instruction | `Use $meta-prompting` | Selects the skill |
-| Problem statement | `develop an approach to [your problem]` | Gives the inquiry a goal; replace the placeholder with your actual problem |
-| Prompt allowance | `Allow up to four prompts` | Sets the maximum number of self-generated prompts, including the first |
-| Stop condition | `stop when there is a concrete next action` | Describes when the inquiry has accomplished enough |
+| Part              | Example                                     | Purpose                                                                    |
+| ----------------- | ------------------------------------------- | -------------------------------------------------------------------------- |
+| Skill instruction | `Use $meta-prompting`                       | Selects the skill                                                          |
+| Problem statement | `develop an approach to [your problem]`     | Gives the inquiry a goal; replace the placeholder with your actual problem |
+| Prompt allowance  | `Allow up to four prompts`                  | Sets the maximum number of self-generated prompts, including the first     |
+| Stop condition    | `stop when there is a concrete next action` | Describes when the inquiry has accomplished enough                         |
 
 The allowance is a ceiling, not a target. The assistant can stop earlier when the
 condition is met. You can omit the allowance and stop condition and let the
