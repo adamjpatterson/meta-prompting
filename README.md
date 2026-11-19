@@ -8,6 +8,18 @@ Read the [skill README](skills/meta-prompting/README.md) for how it works and ho
 to install it. [SKILL.md](skills/meta-prompting/SKILL.md) contains the operating
 instructions.
 
+## Installation
+
+Enter this in the **Codex chat box**, not your terminal:
+
+```text
+Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting
+```
+
+The assistant installs the skill for your user account. If it does not appear in
+`/skills`, restart Codex. For manual installation in a project or updating an
+existing copy, see [installation and updating](skills/meta-prompting/README.md#install).
+
 ## Use
 
 The skill instructs the assistant to initiate an inquiry when work repeats without
@@ -55,9 +67,6 @@ the package format; [Codex's skill guide](https://learn.chatgpt.com/docs/build-s
 defines discovery locations. The outer `skills/` folder is our repository
 organization, not a required part of an installed skill.
 
-Install directly from GitHub through `$skill-installer`, or copy the package into
-a project. See [installation and updating](skills/meta-prompting/README.md#install)
-for the prompt to enter in Codex and the manual alternative.
 Development checks are recorded in the [validation notes](skills/meta-prompting/references/validation.md).
 
 ## Layout
