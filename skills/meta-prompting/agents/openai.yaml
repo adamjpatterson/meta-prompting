@@ -1,0 +1,5 @@
+interface:
+  display_name: "Meta-prompting"
+  short_description: "Shape context through self-generated inquiries"
+policy:
+  allow_implicit_invocation: true
