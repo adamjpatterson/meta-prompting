@@ -1,6 +1,9 @@
 # Validation notes
 
-This record describes development checks of the direct `codex queue` workflow.
+This shared test record describes development checks of the direct `codex queue`
+workflow. It helps users and maintainers, including agents, see what was checked,
+in which environment, and what remains untested. It is a reference for development;
+the operating instructions live in [SKILL.md](../SKILL.md).
 
 ## Environment
 

@@ -16,13 +16,37 @@ You can also request it directly:
 > Use $meta-prompting to develop an approach to [your problem]. Allow up to four
 > prompts and stop when there is a concrete next action.
 
+The request has four parts:
+
+| Part | Example | Purpose |
+| --- | --- | --- |
+| Skill instruction | `Use $meta-prompting` | Selects the skill |
+| Problem statement | `develop an approach to [your problem]` | Gives the inquiry a goal; replace the placeholder with your actual problem |
+| Prompt allowance | `Allow up to four prompts` | Sets the maximum number of self-generated prompts, including the first |
+| Stop condition | `stop when there is a concrete next action` | Describes when the inquiry has accomplished enough |
+
+The allowance is a ceiling, not a target. The assistant can stop earlier when the
+condition is met. You can omit the allowance and stop condition and let the
+assistant choose them from the task. Each queued prompt starts a subsequent
+conversation turn; the allowance counts those prompts, not tool calls.
+
+## Requirements
+
 The host must provide a shell tool, `codex queue`, and `CODEX_THREAD_ID` for the
 active conversation. The skill uses the existing Codex session; it needs no
 separate model or API key.
 
-The project registers the skill through `.agents/skills/meta-prompting`, a relative
-symlink to `skills/meta-prompting`. Automatic skill selection is enabled. If your
-client does not discover it, ask the assistant to read the SKILL.md directly.
+## Discovery in this repository
+
+The source package is `skills/meta-prompting/`. Codex discovers project skills
+under `.agents/skills/`, so `.agents/skills/meta-prompting` is a symbolic link to
+the source folder. This lets Codex read the files being edited without keeping
+a second copy. Automatic selection is enabled in `agents/openai.yaml`.
+
+The [Agent Skills specification](https://agentskills.io/specification) defines
+the package format; [Codex's skill guide](https://learn.chatgpt.com/docs/build-skills#where-to-save-skills)
+defines discovery locations. The outer `skills/` folder is our repository
+organization, not a required part of an installed skill.
 
 For installation in another project, see the [installation instructions](skills/meta-prompting/README.md#install-in-another-project).
 Development checks are recorded in the [validation notes](skills/meta-prompting/references/validation.md).

@@ -40,9 +40,9 @@ shell expansion of dollar signs, backticks, or other prompt content. Send to the
 current thread without `--resume`.
 
 After a successful queue call, update the count in the conversation and end the
-turn with a brief handoff, such as “Prompt 1 of 4 queued.” Do not answer from the
-tool output. Queue acceptance is not proof of arrival; wait for the new user-input
-message. Keep only one prompt pending at a time.
+turn with a brief handoff, such as “Prompt 1 of 4 queued.” Wait until the queued
+prompt arrives as a new user-input message before answering it. The command
+result only confirms queue acceptance. Keep only one prompt pending at a time.
 
 When it arrives, use the conversation to associate it with the pending prompt.
 Respect newer user directions; a delayed prompt must not restart a stopped inquiry.
