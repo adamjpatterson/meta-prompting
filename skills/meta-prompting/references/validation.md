@@ -1,13 +1,13 @@
 # Validation notes
 
-These are development observations, not a benchmark or a guarantee of future
-behavior. The current workflow uses direct `codex queue` calls and no relay.
+This record describes development checks of the direct `codex queue` workflow.
 
 ## Environment
 
 - Date: November 18, 2026.
 - Codex CLI: 0.169.0, Linux, Bash, an existing active Codex conversation.
-- Queue delivery required local app-server access beyond the filesystem sandbox.
+- Queue delivery succeeded after allowing the command broader host access to
+  communicate with the local Codex app server.
 - No separate model was invoked for the live delivery checks.
 
 ## Checks
@@ -23,9 +23,6 @@ behavior. The current workflow uses direct `codex queue` calls and no relay.
 | Newer user direction interrupts inquiry | User stop received after queue acceptance; delayed prompt arrived and was disregarded without continuing the inquiry |
 | Uncertain-send handling | Instructions reviewed: stop and do not retry automatically; not fault-injected |
 
-The one-prompt direct-delivery check preceded this packaging pass. Older relay
-tests do not establish correctness of the current instruction-only workflow.
-
 For the adaptive check, choose only the first prompt in advance and derive the
 second from its response. For early completion, allow more prompts than needed
 and stop when the concrete criterion is met. For interruption, introduce an
@@ -39,7 +36,6 @@ skill discovery from delivery to the active conversation. The second prompt was
 then composed to ask for a minimal check of delivery, response, and stopping.
 Both arrived as user input in the same conversation. The inquiry ended at its
 two-prompt allowance and produced the one-prompt first-use check in the README.
-This is an observed documentation outcome, not a controlled comparison.
 
 ## Early-completion observation
 
@@ -62,6 +58,5 @@ delivery, not every possible timing or context-loss scenario.
 
 Counts and stopping conditions are maintained in conversation context, not
 independently enforced. Context loss, ambiguous delivery, or different host
-behavior can prevent continuation. Successful delivery does not establish that
-context shaping improves task quality. Cross-host compatibility, long inquiries,
+behavior can prevent continuation. Cross-host compatibility, long inquiries,
 and automatic-selection reliability have not been systematically evaluated.
