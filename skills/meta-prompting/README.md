@@ -19,6 +19,7 @@ flowchart TD
     E --> F{More inquiry useful and allowed?}
     F -->|Yes| B
     F -->|No| G[Deliver the result and return to the task]
+    classDef default fill:#e0f2fe,stroke:#0284c7,color:#0c4a6e;
 ```
 
 Codex supplies model execution and message delivery. The skill guides the
@@ -30,12 +31,31 @@ reconsider assumptions, or bring a wandering conversation back to its goal.
 The assistant may initiate an inquiry when it would help the current task. You
 can also ask explicitly:
 
-> Use $meta-prompting to clarify [problem]. Allow up to four prompts. Stop when
-> there is one concrete recommendation and a practical way to evaluate it.
+> Use $meta-prompting to develop an approach to [your problem]. Allow up to four
+> prompts and stop when there is a concrete next action.
 
-The host must support shell commands, provide `codex queue`, and expose
-`CODEX_THREAD_ID` for the active conversation. The skill operates through the
-existing Codex session.
+The request has four parts:
+
+| Part | Example | Purpose |
+| --- | --- | --- |
+| Skill instruction | `Use $meta-prompting` | Selects the skill |
+| Problem statement | `develop an approach to [your problem]` | Gives the inquiry a goal; replace the placeholder with your actual problem |
+| Prompt allowance | `Allow up to four prompts` | Sets the maximum number of self-generated prompts, including the first |
+| Stop condition | `stop when there is a concrete next action` | Describes when the inquiry has accomplished enough |
+
+The allowance is a ceiling, not a target. The assistant can stop earlier when the
+condition is met. You can omit the allowance and stop condition and let the
+assistant choose them from the task. Each queued prompt starts a subsequent
+conversation turn; the allowance counts those prompts, not tool calls.
+
+
+## Requirements
+
+The host must provide a shell tool, `codex queue`, and `CODEX_THREAD_ID` for the
+active conversation. The skill uses the existing Codex session; it needs no
+separate model or API key.
+
+## Prompt delivery
 
 The assistant operates the queue; you do not need to paste its prompts. For example,
 it can submit a prompt using Bash:
@@ -50,21 +70,14 @@ actual arrival must be observed in the conversation before continuing.
 
 ## How Codex finds the skill
 
-The source package lives in `skills/meta-prompting/`. Codex looks for project
-skills in `.agents/skills/`, so this repository includes a symbolic link at
-`.agents/skills/meta-prompting` pointing to the source package. A symbolic link
-acts as a shortcut: Codex reads the same files you edit, without a second copy.
+Codex discovers project skills in `.agents/skills/` and personal skills in
+`~/.agents/skills/`. Install the `meta-prompting` folder in one of those locations
+as described below.
 
 `agents/openai.yaml` enables automatic selection. This lets the assistant choose
 meta-prompting when it would help your task. You can still request it explicitly
 with `$meta-prompting`. If it is missing from the skill selector, restart Codex,
 or ask the assistant to read [SKILL.md](SKILL.md) and follow it directly.
-
-This layout separates the distributable package from its local discovery path.
-The [Agent Skills specification](https://agentskills.io/specification) defines the
-package format; [Codex's skill guide](https://learn.chatgpt.com/docs/build-skills#where-to-save-skills)
-defines the installation locations and supports symbolic links. The outer
-`skills/` directory is an organizational choice, not a required repository layout.
 
 ## Install in another project
 
@@ -127,14 +140,15 @@ host's normal approval process for the required access.
 
 ## State and stopping
 
-The assistant keeps the goal, prompt allowance, and pending prompt in the
-conversation. It sends one prompt at a time and stops when the goal is met or the
-allowance is exhausted. The assistant tracks this allowance itself.
+The skill instructs the assistant to keep the goal, prompt allowance, and pending
+prompt in the conversation. It calls for one pending prompt at a time and stopping
+when the goal is met or the allowance is exhausted. The assistant tracks the
+allowance itself.
 
-If sending fails with an uncertain outcome, the assistant stops instead of
-retrying automatically: the prompt may already have been accepted. It also
-respects new user directions, including a request to stop while a prompt is
-pending.
+If sending fails with an uncertain outcome, the skill instructs the assistant
+to stop instead of retrying automatically: the prompt may already have been
+accepted. It also instructs the assistant to respect new user directions,
+including a request to stop while a prompt is pending.
 
 ## Package
 
