@@ -19,6 +19,7 @@ the operating instructions live in [SKILL.md](../SKILL.md).
 | --- | --- |
 | Package copied outside development checkout | Metadata validates and relative links resolve |
 | Standalone license | Package includes the same MIT license as the repository |
+| Startup permission recovery | Observed delivery after an app-server read-only-filesystem startup error was resolved using broader host permissions |
 | Direct queue delivery | Observed user-role arrival and response in the same conversation |
 | One-prompt allowance | Responded to the sole prompt and stopped without another send |
 | Two-prompt adaptive inquiry | Observed both arrivals; second prompt derived from the first response; stopped at two |
@@ -64,3 +65,7 @@ Counts and stopping conditions are maintained in conversation context, not
 independently enforced. Context loss, ambiguous delivery, or different host
 behavior can prevent continuation. Cross-host compatibility, long inquiries,
 and automatic-selection reliability have not been systematically evaluated.
+
+These checks exercise delivery and inquiry control. They do not compare reasoning
+outcomes or isolate the effect of user-role delivery from deliberate reframing
+or an additional conversation turn.
