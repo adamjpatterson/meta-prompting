@@ -37,7 +37,7 @@ The skill will be installed to `<your-project>/.agents/skills/meta-prompting/`.
 The assistant reports the installation location. If the skill does not appear in
 `/skills`, restart Codex. For an existing copy, see [Updating](#updating).
 
-### Manual installation in a project
+### Manual installation
 
 If the skill installer is unavailable or you prefer a project-local copy,
 install the package by copying one folder:
@@ -68,20 +68,15 @@ personal installation to avoid duplicate entries.
 
 ### Updating
 
-An installed copy does not automatically follow changes on GitHub. Ask the
-assistant to locate the copy you use before updating it, especially if both a
-project installation and a personal installation exist.
+To update, ask Codex:
 
-The installer refuses to overwrite an existing destination. For an installer-managed
-copy, ask the assistant to preserve any local edits, replace that installation
-with the latest GitHub package, and confirm its location. This is an update task
-for the assistant, not a built-in overwrite option of the installer.
+```text
+Update my installed meta-prompting skill from https://github.com/adamjpatterson/meta-prompting. Keep its current installation location and preserve any local edits. Reread the updated SKILL.md when finished.
+```
 
-For a manually copied installation, download the current package and replace the
-files in the same destination after preserving local edits. If your installation
-is a symbolic link to a Git checkout, update that checkout instead of replacing
-the link. Keep one active installation to avoid loading an older duplicate.
-After updating, ask the assistant to reread the installed `SKILL.md`.
+For a manual installation, replace the skill folder with the latest copy after
+preserving any local edits. If you installed using a symbolic link to a Git
+checkout, update that checkout instead.
 
 ### Try it
 
@@ -95,7 +90,7 @@ environment, then try:
 You should see the question arrive as a new user-input message in the same
 conversation, followed by the assistant's response. The inquiry should end there.
 
-## Use
+## Usage
 
 The skill instructs the assistant to initiate an inquiry when work repeats without
 progress, relies on an untested premise, accumulates complexity, or drifts from
@@ -143,7 +138,7 @@ flowchart TD
     B --> C[Call codex queue for the current thread]
     C --> D[End turn and wait for delivery]
     D --> E[Address prompt using accumulated context]
-    E --> F{More inquiry useful and allowed?}
+    E --> F{Continue?}
     F -->|Yes| B
     F -->|No| G[Deliver the result and return to the task]
     classDef default fill:#e0f2fe,stroke:#0284c7,color:#0c4a6e;
@@ -152,6 +147,8 @@ flowchart TD
 Codex supplies model execution and message delivery. The skill guides the
 assistant in choosing prompts and using their responses to clarify the task,
 reconsider assumptions, or bring a wandering conversation back to its goal.
+The inquiry continues only while another prompt would help, the goal remains
+unmet, and the prompt allowance has not been exhausted.
 
 ### Prompt delivery
 
@@ -176,7 +173,7 @@ separate model or API key.
 
 The shell launches `codex queue`, which connects to a local Codex app server or
 starts one as needed. The app server accepts the request to add a message to the
-conversation. You normally do not need to start it manually.
+conversation.
 
 - **Restricted access:** the sandbox may block filesystem access needed to start
   or contact the app server. The assistant can request broader access for the
