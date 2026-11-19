@@ -53,7 +53,9 @@ the package format; [Codex's skill guide](https://learn.chatgpt.com/docs/build-s
 defines discovery locations. The outer `skills/` folder is our repository
 organization, not a required part of an installed skill.
 
-For installation in another project, see the [installation instructions](skills/meta-prompting/README.md#install-in-another-project).
+Install directly from GitHub through `$skill-installer`, or copy the package into
+a project. See [installation and updating](skills/meta-prompting/README.md#install)
+for the prompt to enter in Codex and the manual alternative.
 Development checks are recorded in the [validation notes](skills/meta-prompting/references/validation.md).
 
 ## Layout

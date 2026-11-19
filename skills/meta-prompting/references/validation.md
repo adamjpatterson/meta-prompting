@@ -75,5 +75,6 @@ problem, and retains the no-automatic-resend rule for uncertain submissions.
 
 The inspected queue source starts the app server before calling `thread/queue/add`.
 An earlier development session recovered from the same startup error using broader
-host permissions and then observed successful delivery. The revised instruction
-has not yet been exercised in the user's other session.
+host permissions and then observed successful delivery. The user subsequently reported that the other
+session was working. That is a user-reported outcome; its execution details were
+not inspected, so the specific recovery action is not established.
