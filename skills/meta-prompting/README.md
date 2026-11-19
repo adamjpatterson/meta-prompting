@@ -116,7 +116,19 @@ or ask the assistant to read [SKILL.md](SKILL.md) and follow it directly.
 
 ## Install
 
+Choose where the skill should be available:
+
+| Scope | Availability | Installer destination |
+| --- | --- | --- |
+| Project-local | One project | `<project>/.agents/skills/meta-prompting/` |
+| User account (“global”) | Across your projects | `$CODEX_HOME/skills/meta-prompting/`, normally `~/.codex/skills/meta-prompting/` |
+
+“Global” means your user account, not every user on the computer. Choose one
+scope to avoid duplicate installations.
+
 ### From GitHub with Codex
+
+For a **user-account installation**, use the default installer:
 
 Enter this in the **Codex chat box**, not your terminal:
 
@@ -124,9 +136,43 @@ Enter this in the **Codex chat box**, not your terminal:
 Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting
 ```
 
+For a **project-local installation**, open Codex in the destination project and
+enter:
+
+```text
+Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting into this project's .agents/skills directory using the installer's --dest option.
+```
+
 The assistant downloads the skill and reports its installation location. It
 should be available on your next turn; if it does not appear in `/skills`,
 restart Codex. If a copy already exists, follow [Updating](#updating) below.
+
+### From the terminal
+
+These Bash examples use the Python helper bundled with Codex's skill-installer.
+If your installation does not contain that helper, use the manual instructions
+below.
+
+For your **user account**, run from any directory:
+
+```bash
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+  --repo adamjpatterson/meta-prompting \
+  --path skills/meta-prompting
+```
+
+For **one project**, run from that project's root directory:
+
+```bash
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+  --repo adamjpatterson/meta-prompting \
+  --path skills/meta-prompting \
+  --dest "$PWD/.agents/skills"
+```
+
+The helper creates the `meta-prompting` folder inside the destination. Both
+commands download from GitHub and refuse to overwrite an existing installation.
+Python is needed for this installer helper, not for using meta-prompting.
 
 ### Manual installation in a project
 

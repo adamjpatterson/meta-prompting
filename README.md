@@ -10,15 +10,20 @@ instructions.
 
 ## Installation
 
-Enter this in the **Codex chat box**, not your terminal:
+For a **user-account installation** available across your projects, enter this
+in the **Codex chat box**:
 
 ```text
 Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting
 ```
 
-The assistant installs the skill for your user account. If it does not appear in
-`/skills`, restart Codex. For manual installation in a project or updating an
-existing copy, see [installation and updating](skills/meta-prompting/README.md#install).
+For a **project-local installation**, open Codex in that project and ask the
+installer to use `--dest` with the project's `.agents/skills` directory.
+“Global” installation here means your user account, not all users on the computer.
+
+If the skill does not appear in `/skills`, restart Codex. See
+[installation and updating](skills/meta-prompting/README.md#install) for both
+scopes, terminal commands, and manual copying.
 
 ## Use
 
