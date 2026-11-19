@@ -64,18 +64,3 @@ Counts and stopping conditions are maintained in conversation context, not
 independently enforced. Context loss, ambiguous delivery, or different host
 behavior can prevent continuation. Cross-host compatibility, long inquiries,
 and automatic-selection reliability have not been systematically evaluated.
-
-## Startup failure follow-up — November 19, 2026
-
-A user reported that another session stopped after `codex queue` failed to start
-its embedded app server with a read-only-filesystem error. The earlier instruction
-prohibited retries for any failed send, despite the README describing permission
-recovery. The instruction now distinguishes confirmed pre-submission startup
-failure from uncertain acceptance, allows one retry after resolving the startup
-problem, and retains the no-automatic-resend rule for uncertain submissions.
-
-The inspected queue source starts the app server before calling `thread/queue/add`.
-An earlier development session recovered from the same startup error using broader
-host permissions and then observed successful delivery. The user subsequently reported that the other
-session was working. That is a user-reported outcome; its execution details were
-not inspected, so the specific recovery action is not established.
