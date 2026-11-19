@@ -55,6 +55,24 @@ The host must provide a shell tool, `codex queue`, and `CODEX_THREAD_ID` for the
 active conversation. The skill uses the existing Codex session; it needs no
 separate model or API key.
 
+### Execution permissions
+
+The shell launches `codex queue`, which connects to a local Codex app server or
+starts one as needed. The app server accepts the request to add a message to the
+conversation. You normally do not need to start it manually.
+
+- **Restricted access:** the sandbox may block filesystem access needed to start
+  or contact the app server. The assistant can request broader access for the
+  command when the host's approval settings permit it.
+- **Full access:** commands run without the filesystem sandbox restriction, so
+  that sandbox approval step is unnecessary. Operating-system permissions still
+  apply.
+
+Full access is not required. The requirement is that the command can reach a
+working app server, either within the sandbox or through approved execution.
+These settings belong to the host, not the skill. See the
+[Codex permissions guide](https://learn.chatgpt.com/docs/permission-modes).
+
 ## Prompt delivery
 
 The assistant operates the queue; you do not need to paste its prompts. For example,
