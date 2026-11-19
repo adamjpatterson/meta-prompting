@@ -48,6 +48,13 @@ condition is met. You can omit the allowance and stop condition and let the
 assistant choose them from the task. Each queued prompt starts a subsequent
 conversation turn; the allowance counts those prompts, not tool calls.
 
+For a concrete first task, open a project with a README and enter this in the
+Codex chat box:
+
+> Use $meta-prompting to review this project's README from a first-time user's
+> perspective. Allow up to three prompts. Stop when you have identified the most
+> important onboarding improvement and explained why it matters. Present your
+> recommendation before editing.
 
 ## Requirements
 
@@ -88,18 +95,34 @@ actual arrival must be observed in the conversation before continuing.
 
 ## How Codex finds the skill
 
-Codex discovers project skills in `.agents/skills/` and personal skills in
-`~/.agents/skills/`. Install the `meta-prompting` folder in one of those locations
-as described below.
+You can install through Codex's skill installer or copy the package manually.
+The installer uses `$CODEX_HOME/skills/` (normally `~/.codex/skills/`). Manual
+installation can use `.agents/skills/` in a project or `~/.agents/skills/` for
+personal use. Choose one route; you do not need a copy in every location.
 
 `agents/openai.yaml` enables automatic selection. This lets the assistant choose
 meta-prompting when it would help your task. You can still request it explicitly
 with `$meta-prompting`. If it is missing from the skill selector, restart Codex,
 or ask the assistant to read [SKILL.md](SKILL.md) and follow it directly.
 
-## Install in another project
+## Install
 
-Install the package by copying one folder:
+### From GitHub with Codex
+
+Enter this in the **Codex chat box**, not your terminal:
+
+```text
+Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting
+```
+
+The assistant downloads the skill and reports its installation location. It
+should be available on your next turn; if it does not appear in `/skills`,
+restart Codex. If a copy already exists, follow [Updating](#updating) below.
+
+### Manual installation in a project
+
+If the skill installer is unavailable or you prefer a project-local copy,
+install the package by copying one folder:
 
 1. Download or clone [adamjpatterson/meta-prompting](https://github.com/adamjpatterson/meta-prompting).
 2. In the project where you want to use the skill, create `.agents/skills/` if it
@@ -129,6 +152,23 @@ replacing it.
 To make the skill available across your projects instead, copy the same folder
 to `~/.agents/skills/meta-prompting/`. Choose either a project installation or a
 personal installation to avoid duplicate entries.
+
+### Updating
+
+An installed copy does not automatically follow changes on GitHub. Ask the
+assistant to locate the copy you use before updating it, especially if both a
+project installation and a personal installation exist.
+
+The installer refuses to overwrite an existing destination. For an installer-managed
+copy, ask the assistant to preserve any local edits, replace that installation
+with the latest GitHub package, and confirm its location. This is an update task
+for the assistant, not a built-in overwrite option of the installer.
+
+For a manually copied installation, download the current package and replace the
+files in the same destination after preserving local edits. If your installation
+is a symbolic link to a Git checkout, update that checkout instead of replacing
+the link. Keep one active installation to avoid loading an older duplicate.
+After updating, ask the assistant to reread the installed `SKILL.md`.
 
 ### Try it
 
