@@ -8,8 +8,7 @@ venv/
 .env
 .env.*
 
-# Local run records and test caches
-/runs/
+# Test caches
 .pytest_cache/
 .coverage
 htmlcov/
