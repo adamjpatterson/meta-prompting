@@ -10,7 +10,7 @@ This is an experimental skill aimed at exploring how instruction hierarchy influ
 
 This skill lets the agent submit its self-generated prompts under the user role rather than the assistant role. This gives those prompts greater instructional priority than they would have as ordinary assistant messages.
 
-The hypothesis is that this may allow the agent to correct unproductive trajectories.
+The hypothesis is that this may allow the agent to correct unproductive trajectories. However, self-generated prompts may also reinforce a mistaken framing.
 
 ## Installation
 
