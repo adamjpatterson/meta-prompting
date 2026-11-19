@@ -36,6 +36,11 @@ The host must provide a shell tool, `codex queue`, and `CODEX_THREAD_ID` for the
 active conversation. The skill uses the existing Codex session; it needs no
 separate model or API key.
 
+`codex queue` also needs access to the local Codex app server. With restricted
+access, starting or contacting that server may require approval. Full access
+removes the sandbox restriction, but is not required to use the skill. See
+[execution permissions](skills/meta-prompting/README.md#execution-permissions).
+
 ## Discovery in this repository
 
 The source package is `skills/meta-prompting/`. Codex discovers project skills
