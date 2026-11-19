@@ -4,20 +4,13 @@ A skill for constructing useful context through self-generated prompts in the
 active conversation. The assistant chooses each next prompt and calls
 `codex queue` directly to deliver its exact text as user input to the same thread.
 
-This README is the human guide. [SKILL.md](skills/meta-prompting/SKILL.md)
-contains the assistant's operating instructions.
+## Introduction
+
+This is an experimental skill aimed at exploring how instruction hierarchy influences context. Each message in the conversation is associated with a particular role (system, developer, user, assistant, tool, and so on). These roles carry different levels of authority within the model's instruction hierarchy. The agent's self-generated prompts are injected under the user role rather than the assistant role. Because user-role instructions have higher priority than assistant-role content, the agent can effectively introduce its own instructions at a higher level of authority than it would ordinarily possess.
+
+The hypothesis is that this may allow the agent to correct unproductive trajectories.
 
 ## Installation
-
-Choose where the skill should be available:
-
-| Scope | Availability | Installer destination |
-| --- | --- | --- |
-| Project-local | One project | `<project>/.agents/skills/meta-prompting/` |
-| User account (“global”) | Across your projects | `$CODEX_HOME/skills/meta-prompting/`, normally `~/.codex/skills/meta-prompting/` |
-
-“Global” means your user account, not every user on the computer. Choose one
-scope to avoid duplicate installations.
 
 ### User-account installation
 
@@ -27,6 +20,8 @@ Open Codex, then enter this in the Codex chat box:
 Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting
 ```
 
+The skill will be installed to `$CODEX_HOME/skills/meta-prompting/`, normally `~/.codex/skills/meta-prompting/`.
+
 ### Project-local installation
 
 Open Codex in the destination project, then enter this in the Codex chat box:
@@ -35,35 +30,10 @@ Open Codex in the destination project, then enter this in the Codex chat box:
 Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting into this project's .agents/skills directory using --dest.
 ```
 
+The skill will be installed to `<your-project>/.agents/skills/meta-prompting/`.
+
 The assistant reports the installation location. If the skill does not appear in
 `/skills`, restart Codex. For an existing copy, see [Updating](#updating).
-
-### From the terminal
-
-These Bash examples use the Python helper bundled with Codex's skill-installer.
-If your installation does not contain that helper, use the manual instructions
-below.
-
-For your **user account**, run from any directory:
-
-```bash
-python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
-  --repo adamjpatterson/meta-prompting \
-  --path skills/meta-prompting
-```
-
-For **one project**, run from that project's root directory:
-
-```bash
-python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
-  --repo adamjpatterson/meta-prompting \
-  --path skills/meta-prompting \
-  --dest "$PWD/.agents/skills"
-```
-
-The helper creates the `meta-prompting` folder inside the destination. Both
-commands download from GitHub and refuse to overwrite an existing installation.
-Python is needed for this installer helper, not for using meta-prompting.
 
 ### Manual installation in a project
 
@@ -74,7 +44,7 @@ install the package by copying one folder:
 2. In the project where you want to use the skill, create `.agents/skills/` if it
    does not already exist.
 3. Copy `skills/meta-prompting/` from this repository into that directory. Copy
-   the whole folder, including `LICENSE`; the result should look like this:
+   the whole folder; the result should look like this:
 
    ```text
    your-project/
@@ -89,10 +59,6 @@ install the package by copying one folder:
 
 4. Open Codex in the destination project and look for `meta-prompting` in
    `/skills`, or type `$meta-prompting`. Restart Codex if it does not appear.
-
-Copy the source folder in step 3, not this repository's symbolic link. If the
-destination already contains `meta-prompting`, review that installation before
-replacing it.
 
 To make the skill available across your projects instead, copy the same folder
 to `~/.agents/skills/meta-prompting/`. Choose either a project installation or a
@@ -196,7 +162,7 @@ codex queue --thread "${CODEX_THREAD_ID:?Current thread is unavailable}" \
 ```
 
 The assistant then ends its turn. A successful command establishes acceptance;
-actual arrival must be observed in the conversation before continuing.
+the skill specifies that the agent must observe actual arrival in the conversation before continuing.
 
 ## Requirements
 
@@ -263,37 +229,11 @@ A timeout or lost connection can leave submission uncertain. In that case, the
 assistant should inspect delivery evidence rather than automatically resending.
 If the host cannot grant the needed access, the assistant reports the blocker.
 
-## Discovery in this repository
-
-The source package is `skills/meta-prompting/`. Codex discovers project skills
-under `.agents/skills/`, so `.agents/skills/meta-prompting` is a symbolic link to
-the source folder. This lets Codex read the files being edited without keeping
-a second copy. Automatic selection is enabled in `agents/openai.yaml`.
-
-The [Agent Skills specification](https://agentskills.io/specification) defines
-the package format; [Codex's skill guide](https://learn.chatgpt.com/docs/build-skills#where-to-save-skills)
-defines discovery locations. The outer `skills/` folder is our repository
-organization, not a required part of an installed skill.
-
-Development checks are recorded in the [validation notes](skills/meta-prompting/references/validation.md).
-
-## Layout
-
-```text
-README.md                   Human-facing guide
-skills/meta-prompting/
-  SKILL.md                  Operating instructions
-  LICENSE                   Standalone package license
-  references/example.md     Illustrative inquiry
-  references/validation.md  Validation scope and results
-  agents/openai.yaml        Codex metadata and invocation policy
-.agents/skills/             Project-local discovery link
-```
-
-The skill folder contains its instructions, license, and supporting references.
-It can be installed independently; the human guide remains in this repository.
-
 ## Development
+
+The skill follows the [Agent Skills specification](https://agentskills.io/specification).
+Its source is in `skills/meta-prompting/`; `.agents/skills/meta-prompting` links
+to that folder so Codex can discover the working copy during development.
 
 The skill's behavior is defined in `skills/meta-prompting/SKILL.md`. Keep that
 file and the human-facing README consistent when changing the workflow.
