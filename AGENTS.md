@@ -5,7 +5,7 @@ This repository develops the `meta-prompting` skill.
 - `README.md`: human-facing installation, usage, and development guide.
 - `skills/meta-prompting/`: self-contained skill instructions and license.
 - `skills/meta-prompting/agents/openai.yaml`: display and invocation metadata.
-- `skills/meta-prompting/references/`: supporting examples.
+- `skills/meta-prompting/references/`: supporting documentation.
 - `.agents/skills/meta-prompting`: relative symlink for project-local discovery.
 
 # Development
