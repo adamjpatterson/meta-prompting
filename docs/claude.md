@@ -24,7 +24,7 @@ Claude Code discovers skills in its native [skill locations](https://code.claude
            references/
    ```
 
-4. Open Claude Code in the destination project and type `/meta-prompting-claude`. Claude Code watches its skill directories, so no restart is needed; run `/reload-skills` if the skill does not appear.
+4. Open Claude Code in the destination project and type `/meta-prompting-claude`. Claude Code watches its skill directories, so no restart should be needed; run `/reload-skills` if the skill does not appear. During development in the VS Code extension, a skill added through a symbolic link appeared only after a window reload, so reload the window or restart the session as a fallback.
 
 Use one installation scope to avoid duplicate entries. Do not install the Codex or OpenCode package for Claude Code sessions.
 
@@ -38,7 +38,7 @@ Ask the assistant to confirm that the `CronCreate` tool is available in its sess
 
 > Use /meta-prompting-claude for a one-prompt delivery check. Schedule the question “What is the purpose of this skill?” for this conversation, respond when it arrives, then stop without scheduling another prompt.
 
-The assistant schedules the prompt for the next minute and ends its turn with a handoff that states the question and the count. Within about two minutes, the assistant should respond again in the same conversation, opening with a note that the prompt arrived, followed by its answer. The inquiry should end there. Unlike Codex and OpenCode, Claude Code does not display the scheduled prompt itself as a message; see [Visibility](#visibility).
+The assistant schedules the prompt a minute or two ahead and ends its turn with a handoff that states the question and the count. Within about two minutes, the assistant should respond again in the same conversation, opening with a note that the prompt arrived, followed by its answer. The inquiry should end there. In the VS Code extension, the scheduled prompt itself is not displayed as a message, unlike on Codex and OpenCode; see [Visibility](#visibility).
 
 ## Usage
 
@@ -72,7 +72,7 @@ The assistant can question its own assumptions and explore another framing. Defi
 ```mermaid
 flowchart TD
     A[Establish goal and prompt allowance] --> B[Assistant composes a prompt]
-    B --> C[Call CronCreate as a one-shot job for the next minute]
+    B --> C[Call CronCreate as a one-shot job a minute or two ahead]
     C --> D[End turn and wait for delivery]
     D --> E[Address prompt using accumulated context]
     E --> F{Continue?}
@@ -85,7 +85,7 @@ Claude Code supplies model execution and message delivery. The skill guides the 
 
 ### Prompt delivery
 
-The assistant operates the scheduler; you do not need to paste its prompts. It checks the local time and calls `CronCreate` with the prompt, a cron expression pinned to the next whole minute, and `recurring` set to `false`. Claude Code enqueues the prompt when that minute arrives and the session is idle, and the prompt starts a new turn as user input.
+The assistant operates the scheduler; you do not need to paste its prompts. It checks the local time and calls `CronCreate` with the prompt, a cron expression pinned to a time one to two minutes ahead, and `recurring` set to `false`. Claude Code enqueues the prompt when that minute arrives and the session is idle, and the prompt starts a new turn as user input.
 
 The assistant then ends its turn. A successful tool result establishes acceptance and reports the next run time; the skill specifies that the assistant must observe actual arrival in the conversation before continuing.
 
@@ -117,7 +117,7 @@ The original development check used Claude Code **2.1.287** in the VS Code exten
 
 ### Skill is missing from the selector
 
-Run `/reload-skills` if the skill does not appear after installation. Check which installation location was used and avoid keeping both an outdated personal copy and a project copy. You can also ask the assistant to read the installed `SKILL.md` directly.
+Run `/reload-skills` if the skill does not appear after installation. If it still does not appear, reload the window in the VS Code extension or restart the session; that was needed once during development. Check which installation location was used and avoid keeping both an outdated personal copy and a project copy. You can also ask the assistant to read the installed `SKILL.md` directly.
 
 ### Scheduling is rejected
 
@@ -125,7 +125,7 @@ If the `CronCreate` call is denied or the tool is absent, the prompt was not sch
 
 ### Prompt does not arrive
 
-The conversation never shows the scheduled prompt itself; look for the assistant's arrival note instead. Scheduled prompts fire only while the session is idle. If the assistant is still working or waiting on another tool, the prompt waits. If the session was closed or resumed, pending jobs may not survive; the skill instructs the assistant to inspect the job list and report rather than resend automatically. See [schedule recovery](../skills/meta-prompting-claude/references/schedule-recovery.md).
+In the VS Code extension the conversation does not show the scheduled prompt itself; look for the assistant's arrival note instead. Scheduled prompts fire only while the session is idle. If the assistant is still working or waiting on another tool, the prompt waits. If the session was closed or resumed, pending jobs may not survive; the skill instructs the assistant to inspect the job list and report rather than resend automatically. See [schedule recovery](../skills/meta-prompting-claude/references/schedule-recovery.md).
 
 ## Development
 

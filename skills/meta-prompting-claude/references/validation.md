@@ -18,7 +18,7 @@ This Claude Code test record describes development checks of the `CronCreate` de
 | Standalone license | Package includes the same MIT license as the repository |
 | Direct scheduled delivery | One-shot job accepted at 2:16 pm local for 2:18 pm; the prompt arrived as user input in the same conversation after the turn ended, within about two minutes of acceptance. Repeated through the installed package: accepted at 3:03 pm for 3:05 pm, arrived, answered, stopped |
 | One-prompt allowance | Responded to the sole prompt and stopped without another schedule |
-| Two-prompt adaptive inquiry | Not yet tested |
+| Two-prompt adaptive inquiry | Observed both arrivals; second prompt derived from the first response; stopped at two |
 | Early completion before allowance | Not yet tested |
 | Newer user direction interrupts inquiry | Not yet tested |
 | Uncertain-send handling | Instructions reviewed: inspect `CronList` and do not retry automatically; not fault-injected |
@@ -34,8 +34,12 @@ The assistant scheduled one prompt with an explicit allowance of one, received a
 
 The session transcript on disk recorded the arrival as a `user` entry with role `user`, flagged as a meta message with a scheduled turn origin and a system prompt source. The VS Code extension did not render it in the chat; the user reported seeing only the assistant's response. This is why the skill instructs the assistant to state each scheduled prompt in its handoff and to open the next response with an arrival note. That instruction was then exercised in a second one-prompt check through the installed package, invoked by slash command in the VS Code extension after a window reload: the handoff stated the prompt and count, the prompt arrived as user input at the scheduled minute, and the response opened with an arrival note before answering and stopping.
 
+## Adaptive inquiry observation — November 21, 2026
+
+A two-prompt inquiry through the installed package asked where a newcomer reading the Claude guide would first be unsure. Only the first prompt was chosen in advance, scheduled at 3:10 pm for 3:12 pm. It arrived at the scheduled minute; the response identified installation step 4, which does not say whether typing the slash command confirms discovery or submits a bare invocation. The second prompt was composed from that answer, scheduled at 3:12 pm for 3:14 pm, and asked whether a later point mattered more. It arrived, the response confirmed step 4 as the main gap and proposed replacement wording, and the inquiry stopped at two without a further schedule. Each handoff stated the scheduled prompt and count, and each response opened with an arrival note. The finding was reported without editing, as the inquiry requested.
+
 ## Limits
 
-Multi-prompt continuation has not been tested on Claude Code; the package assumes that a second scheduled prompt behaves like the first. Counts and stopping conditions are maintained in conversation context, not independently enforced. Scheduled jobs fire only while the session is idle and have one-minute granularity, so delivery is slower than the Codex queue. Whether pending jobs survive a session resume was not checked. The stored transcript confirms user role for the arrival, but not how the host presents the message to the model. Scheduled prompts are hidden from the chat in the VS Code extension; rendering in the terminal interface has not been checked.
+Multi-prompt continuation was tested once, with two prompts; longer inquiries are untested. Counts and stopping conditions are maintained in conversation context, not independently enforced. Scheduled jobs fire only while the session is idle and have one-minute granularity, so delivery is slower than the Codex queue. Whether pending jobs survive a session resume was not checked. The stored transcript confirms user role for the arrival, but not how the host presents the message to the model. Scheduled prompts are hidden from the chat in the VS Code extension; rendering in the terminal interface has not been checked.
 
 These checks exercise delivery and stopping. They do not compare reasoning outcomes or isolate the effect of user-role delivery from deliberate reframing or an additional conversation turn.

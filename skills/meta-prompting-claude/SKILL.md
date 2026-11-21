@@ -19,7 +19,7 @@ Briefly state what the inquiry should clarify and choose a finite prompt allowan
 
 Requires the `CronCreate` tool in an interactive Claude Code session. If the tool is unavailable or scheduling is disabled, explain what is missing; do not substitute another session, resume this session from a shell, or post to the session's messaging socket.
 
-Check the current local time, then call `CronCreate` with your prompt, `recurring` set to `false`, and a cron expression pinned to the next whole minute: minute, hour, day-of-month, and month set to that time, day-of-week `*`. For example, at 2:16 pm on November 21:
+Check the current local time, then call `CronCreate` with your prompt, `recurring` set to `false`, and a cron expression pinned to a time one to two minutes ahead, leaving time to end the turn: minute, hour, day-of-month, and month set to that time, day-of-week `*`. For example, at 2:16 pm on November 21:
 
 ```text
 CronCreate
@@ -28,7 +28,7 @@ CronCreate
   recurring: false
 ```
 
-The tool result confirms acceptance and reports the next run time. Scheduled prompts fire only while the session is idle, at one-minute granularity. After acceptance, update the count and end the turn with a brief handoff that states the scheduled prompt verbatim and the count, because Claude Code does not display scheduled prompts in the conversation. Wait for arrival as user input before responding; acceptance is not arrival. Open the response with a one-line arrival note naming the prompt number, answer as appropriate, then decide whether another prompt would help.
+The tool result confirms acceptance and reports the next run time. Scheduled prompts fire only while the session is idle, at one-minute granularity. After acceptance, update the count and end the turn with a brief handoff that states the scheduled prompt verbatim and the count, because the host may not display scheduled prompts in the conversation (observed in the VS Code extension). Wait for arrival as user input before responding; acceptance is not arrival. Open the response with a one-line arrival note naming the prompt number, answer as appropriate, then decide whether another prompt would help.
 
 Keep one prompt pending at a time and count each accepted prompt once. Respect newer user directions; a delayed prompt must not restart a stopped inquiry. If the pending prompt, goal, or count is unclear, stop and explain the uncertainty. If submission is uncertain, inspect `CronList` rather than automatically resending. For rejected calls and missing arrivals, see [schedule recovery](references/schedule-recovery.md).
 
