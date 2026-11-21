@@ -4,7 +4,7 @@ This Claude Code example shows how each response can suggest the next prompt.
 
 The user wants to improve a document but has not defined what “better” means. The assistant establishes a two-prompt allowance and a stopping condition: one specific revision and an observable way to judge it.
 
-It checks the local time and schedules a one-shot prompt for the next minute, then ends its turn with a handoff that states the prompt and the count, since the conversation will not display the scheduled prompt itself:
+It checks the local time and schedules a one-shot prompt a minute or two ahead, then ends its turn with a handoff that states the prompt and the count, since the conversation may not display the scheduled prompt itself:
 
 > Scheduled prompt 1 of 2: What must the reader be able to do after reading this document?
 
