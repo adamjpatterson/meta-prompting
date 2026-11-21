@@ -41,18 +41,28 @@ The receiving execution answers without submitting another prompt. Once the call
 
 Requires OpenCode, shell access, the `opencode` executable, and a verified active session ID. The client must permit the command to access its session storage and execute the response.
 
+## Compatibility and validation
+
+A reported one-prompt check used **OpenCode 1.19.6** on Linux with Bash and an active OpenCode session. See the [validation notes](../skills/meta-prompting-opencode/references/validation.md) for its results and the checks still pending for this package.
+
 ## Troubleshooting
 
-If session identification is ambiguous, resolve it before submission. A title or most-recent session alone is not sufficient evidence. If a call hangs or times out, do not automatically retry: the prompt may already have been admitted. Inspect session history before deciding how to recover.
+If the assistant cannot identify your active session, ask it to explain the ambiguity so you can clarify which conversation to use. The skill requires it to confirm the session against the conversation history before submitting a prompt.
 
-## Validation and development
+If a call hangs or times out, the prompt may already have arrived. Ask the assistant to check the session history before trying again to avoid submitting the same prompt twice.
 
-A reported OpenCode 1.19.6 check observed a prompt and response once in the same session and stopping after one prompt. See the [validation record](../skills/meta-prompting-opencode/references/validation.md) for scope and remaining unknowns.
+## Development
 
-The operating instructions are in [SKILL.md](../skills/meta-prompting-opencode/SKILL.md). Keep this guide consistent with them. Install the [Agent Skills reference validator](https://github.com/agentskills/agentskills/tree/main/skills-ref) in a separate development environment, then run from the repository root:
+The skill follows the [Agent Skills specification](https://agentskills.io/specification). Its source is in `skills/meta-prompting-opencode/`.
+
+To change how the skill works, edit [SKILL.md](../skills/meta-prompting-opencode/SKILL.md) and update this guide to match. That file contains the instructions OpenCode follows when using the skill.
+
+After editing, check that documentation links resolve and validate the package with the [Agent Skills reference validator](https://github.com/agentskills/agentskills/tree/main/skills-ref). Install it in a separate development environment using its installation instructions, then run from this repository's root:
 
 ```bash
 skills-ref validate skills/meta-prompting-opencode
 ```
 
-Check links and use a bounded live inquiry for delivery changes. Record observed arrival, response, continuation, and stopping rather than inferring success from command acceptance alone.
+The validator checks package metadata; it does not test prompt delivery or behavior.
+
+For workflow changes, ask OpenCode to run a short inquiry with a small prompt allowance. Inspect the session history and command results: each prompt should receive one reply, and the assistant that started the inquiry should choose any follow-up after the command returns. Check that follow-ups build on previous responses and that the inquiry stops at its goal or prompt allowance. Record your environment and observations in the [validation notes](../skills/meta-prompting-opencode/references/validation.md).
