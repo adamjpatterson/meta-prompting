@@ -4,7 +4,7 @@ license: MIT
 description: In Codex, proactively reframe work when attempts repeat without progress, an untested premise drives the approach, complexity grows without clarifying the goal, or the conversation drifts. Construct useful context through self-generated prompts in the active conversation. Also use for explicit meta-prompting or recursive self-prompting requests.
 compatibility: Requires Codex, a shell tool, codex queue, and CODEX_THREAD_ID for the active conversation.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Meta-prompting for Codex

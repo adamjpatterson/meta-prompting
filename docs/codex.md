@@ -2,7 +2,7 @@
 
 This package uses `codex queue` to deliver a prompt, end the current turn, and continue after arrival in the same conversation.
 
-These instructions target `main`. Version `0.2.0` introduces the client-specific package names; earlier releases use `meta-prompting`.
+These instructions target `main`. Version `0.2.0` introduced the client-specific package names; earlier releases use `meta-prompting`. Skills share the repository version, currently `0.3.0`.
 
 ## Installation
 
