@@ -19,4 +19,6 @@ Preserve existing research records unless the user requests their removal.
 
 # Commit attribution
 
-Keep the user's configured Git author. For substantive Codex contributions, add `Co-authored-by: Codex <noreply@openai.com>` to the commit message. Preserve accurate co-author credit for other contributors when work is shared. Record attribution when creating commits; do not claim authorship merely for committing someone else's edits.
+Keep the user's configured Git author. Every agent that contributes substantively to a change should add its own `Co-authored-by: Name <email>` trailer when creating the commit, using its established attribution identity. Credit substantive collaborators, whether human or agent, and preserve existing co-author trailers. Merely reviewing, testing, or committing someone else's changes does not by itself establish co-authorship.
+
+For Codex, use `Codex <noreply@openai.com>`; for Claude Code, use `Claude <noreply@anthropic.com>`, including the model name when known. Other agents should use their documented attribution identity rather than inventing an email address.
