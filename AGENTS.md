@@ -4,6 +4,7 @@ This repository develops client-specific meta-prompting skills.
 
 - `README.md`: shared introduction and links to client guides.
 - `docs/codex.md`, `docs/opencode.md`, and `docs/claude.md`: client installation, usage, and development guides.
+- `docs/validation/`: development validation records for each client.
 - `skills/meta-prompting-codex/`, `skills/meta-prompting-opencode/`, and `skills/meta-prompting-claude/`: independently installable instructions, licenses, and references.
 - `skills/meta-prompting-codex/agents/openai.yaml`: Codex display and invocation metadata.
 - `.agents/skills/meta-prompting-codex`: relative symlink for project-local Codex discovery.
@@ -15,7 +16,7 @@ Keep each package self-contained and specific to its host. Preserve freely compo
 
 Validate all packages and documentation links after edits. Keep prose paragraphs unwrapped; preserve line breaks needed by code, tables, and lists. For delivery changes, use a bounded live check when needed and distinguish acceptance from observed arrival. Do not invoke a separate model as a substitute for testing the active client's workflow.
 
-Preserve existing research records unless the user requests their removal.
+Keep development validation records in `docs/validation/`, outside the installable skill packages. Preserve existing research records unless the user requests their removal.
 
 # Commit attribution
 

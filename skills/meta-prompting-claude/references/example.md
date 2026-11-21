@@ -15,5 +15,3 @@ When the prompt arrives, the assistant opens with an arrival note (“Prompt 1 o
 The assistant schedules that prompt, states it in the handoff as prompt 2 of 2, and ends the turn again. On arrival, it notes the arrival, identifies a passage to revise, and proposes a check: ask a reader to locate and explain the first action using only the revised document.
 
 Both prompts have been used. The assistant delivers the recommendation and check, then returns to the original task. The count and outcome remain in the conversation.
-
-A recorded Claude Code live check followed this pattern with two prompts; see the [validation notes](validation.md).

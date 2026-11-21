@@ -111,7 +111,7 @@ If a call is rejected before scheduling, the prompt was never submitted and the 
 
 ## Compatibility and validation
 
-The original development check used Claude Code **2.1.287** in the VS Code extension on Linux with an active interactive conversation. See the [validation notes](../skills/meta-prompting-claude/references/validation.md) for the checks performed, including a two-prompt adaptive inquiry, their results, and the checks that remain untested.
+The original development check used Claude Code **2.1.287** in the VS Code extension on Linux with an active interactive conversation. See the [validation notes](validation/claude.md) for the checks performed, including a two-prompt adaptive inquiry, their results, and the checks that remain untested.
 
 ## Troubleshooting
 
@@ -141,4 +141,4 @@ skills-ref validate skills/meta-prompting-claude
 
 The validator checks package metadata; it does not test prompt delivery or behavior.
 
-For workflow changes, try a short inquiry in an active Claude Code conversation. Verify that each scheduled prompt arrives in the same conversation, that the next prompt builds on the preceding response, and that the inquiry stops at its goal or prompt allowance. Record the environment and observations in the [validation notes](../skills/meta-prompting-claude/references/validation.md).
+For workflow changes, try a short inquiry in an active Claude Code conversation. Verify that each scheduled prompt arrives in the same conversation, that the next prompt builds on the preceding response, and that the inquiry stops at its goal or prompt allowance. Record the environment and observations in the [validation notes](validation/claude.md).

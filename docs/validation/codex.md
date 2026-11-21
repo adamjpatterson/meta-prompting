@@ -1,6 +1,6 @@
 # Validation notes
 
-This Codex test record describes development checks of the direct `codex queue` workflow. It helps users and maintainers, including agents, see what was checked, in which environment, and what remains untested. It is a reference for development; the operating instructions live in [SKILL.md](../SKILL.md).
+This Codex test record describes development checks of the direct `codex queue` workflow. It helps users and maintainers, including agents, see what was checked, in which environment, and what remains untested. It is a reference for development; the operating instructions live in [SKILL.md](../../skills/meta-prompting-codex/SKILL.md).
 
 ## Original test environment
 
@@ -58,5 +58,3 @@ This checks the documented GitHub installation, discovery, startup recovery, and
 ## Limits
 
 Counts and stopping conditions are maintained in conversation context, not independently enforced. Context loss, ambiguous delivery, or different host behavior can prevent continuation. Cross-host compatibility, long inquiries, and automatic-selection reliability have not been systematically evaluated.
-
-These checks exercise delivery and inquiry control. They do not compare reasoning outcomes or isolate the effect of user-role delivery from deliberate reframing or an additional conversation turn.

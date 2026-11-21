@@ -17,4 +17,4 @@ The revised reference was subsequently exercised by the one-prompt check below. 
 
 ## Limits
 
-The one-prompt result was reported from OpenCode; it was not independently reproduced by the Codex maintainer. Multi-prompt continuation and exact scheduler ordering remain unverified. Stored roles do not establish internal model presentation or reasoning benefits.
+The one-prompt result was reported from OpenCode; it was not independently reproduced by the Codex maintainer. Multi-prompt continuation and exact scheduler ordering remain unverified.

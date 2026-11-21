@@ -144,7 +144,7 @@ If sending fails with an uncertain outcome, the skill instructs the assistant to
 
 ## Compatibility and validation
 
-The original development checks used Codex CLI **0.169.0** on Linux with Bash and an active Codex conversation. See the [validation notes](../skills/meta-prompting-codex/references/validation.md) for the checks performed and their results.
+The original development checks used Codex CLI **0.169.0** on Linux with Bash and an active Codex conversation. See the [validation notes](validation/codex.md) for the checks performed and their results.
 
 ## Troubleshooting
 
@@ -172,5 +172,5 @@ skills-ref validate skills/meta-prompting-codex
 
 The validator checks package metadata; it does not test prompt delivery or behavior.
 
-For workflow changes, try a short inquiry in an active Codex conversation. Verify that each queued prompt arrives in the same conversation, that the next prompt builds on the preceding response, and that the inquiry stops at its goal or prompt allowance. Record the environment and observations in the [validation notes](../skills/meta-prompting-codex/references/validation.md).
+For workflow changes, try a short inquiry in an active Codex conversation. Verify that each queued prompt arrives in the same conversation, that the next prompt builds on the preceding response, and that the inquiry stops at its goal or prompt allowance. Record the environment and observations in the [validation notes](validation/codex.md).
 

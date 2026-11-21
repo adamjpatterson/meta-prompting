@@ -43,7 +43,7 @@ Requires OpenCode, shell access, the `opencode` executable, and a verified activ
 
 ## Compatibility and validation
 
-A reported one-prompt check used **OpenCode 1.19.6** on Linux with Bash and an active OpenCode session. See the [validation notes](../skills/meta-prompting-opencode/references/validation.md) for its results and the checks still pending for this package.
+A reported one-prompt check used **OpenCode 1.19.6** on Linux with Bash and an active OpenCode session. See the [validation notes](validation/opencode.md) for its results and the checks still pending for this package.
 
 ## Troubleshooting
 
@@ -65,4 +65,4 @@ skills-ref validate skills/meta-prompting-opencode
 
 The validator checks package metadata; it does not test prompt delivery or behavior.
 
-For workflow changes, ask OpenCode to run a short inquiry with a small prompt allowance. Inspect the session history and command results: each prompt should receive one reply, and the assistant that started the inquiry should choose any follow-up after the command returns. Check that follow-ups build on previous responses and that the inquiry stops at its goal or prompt allowance. Record your environment and observations in the [validation notes](../skills/meta-prompting-opencode/references/validation.md).
+For workflow changes, ask OpenCode to run a short inquiry with a small prompt allowance. Inspect the session history and command results: each prompt should receive one reply, and the assistant that started the inquiry should choose any follow-up after the command returns. Check that follow-ups build on previous responses and that the inquiry stops at its goal or prompt allowance. Record your environment and observations in the [validation notes](validation/opencode.md).

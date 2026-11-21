@@ -1,6 +1,6 @@
 # Validation notes
 
-This Claude Code test record describes development checks of the `CronCreate` delivery workflow. It helps users and maintainers, including agents, see what was checked, in which environment, and what remains untested. It is a reference for development; the operating instructions live in [SKILL.md](../SKILL.md).
+This Claude Code test record describes development checks of the `CronCreate` delivery workflow. It helps users and maintainers, including agents, see what was checked, in which environment, and what remains untested. It is a reference for development; the operating instructions live in [SKILL.md](../../skills/meta-prompting-claude/SKILL.md).
 
 ## Original test environment
 
@@ -40,6 +40,4 @@ A two-prompt inquiry through the installed package asked where a newcomer readin
 
 ## Limits
 
-Multi-prompt continuation was tested once, with two prompts; longer inquiries are untested. Counts and stopping conditions are maintained in conversation context, not independently enforced. Scheduled jobs fire only while the session is idle and have one-minute granularity, so delivery is slower than the Codex queue. Whether pending jobs survive a session resume was not checked. The stored transcript confirms user role for the arrival, but not how the host presents the message to the model. Scheduled prompts are hidden from the chat in the VS Code extension; rendering in the terminal interface has not been checked.
-
-These checks exercise delivery and stopping. They do not compare reasoning outcomes or isolate the effect of user-role delivery from deliberate reframing or an additional conversation turn.
+Multi-prompt continuation was tested once, with two prompts; longer inquiries are untested. Counts and stopping conditions are maintained in conversation context, not independently enforced. Scheduled jobs fire only while the session is idle and have one-minute granularity, so delivery is slower than the Codex queue. Whether pending jobs survive a session resume was not checked. Scheduled prompts are hidden from the chat in the VS Code extension; rendering in the terminal interface has not been checked.
