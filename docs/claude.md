@@ -38,7 +38,7 @@ Ask the assistant to confirm that the `CronCreate` tool is available in its sess
 
 > Use /meta-prompting-claude for a one-prompt delivery check. Schedule the question “What is the purpose of this skill?” for this conversation, respond when it arrives, then stop without scheduling another prompt.
 
-The assistant schedules the prompt for the next minute and ends its turn. Within about two minutes, you should see the question arrive as a new user-input message in the same conversation, followed by the assistant's response. The inquiry should end there.
+The assistant schedules the prompt for the next minute and ends its turn with a handoff that states the question and the count. Within about two minutes, the assistant should respond again in the same conversation, opening with a note that the prompt arrived, followed by its answer. The inquiry should end there. Unlike Codex and OpenCode, Claude Code does not display the scheduled prompt itself as a message; see [Visibility](#visibility).
 
 ## Usage
 
@@ -91,6 +91,10 @@ The assistant then ends its turn. A successful tool result establishes acceptanc
 
 Delivery is slower than a direct queue: scheduling has one-minute granularity, and jobs fire only between turns. Jobs on round minutes may fire up to about ninety seconds early.
 
+### Visibility
+
+Claude Code stores a scheduled prompt in the session transcript as a user-role message, but marks it as a meta message with a scheduled origin, and the VS Code extension does not render such messages in the chat. The model receives the prompt as user input; you do not see it. Codex and OpenCode display the self-generated prompt as an ordinary user message. To keep the inquiry readable, the skill instructs the assistant to state each scheduled prompt verbatim in its handoff and to open the next response with an arrival note. Rendering in the terminal interface has not been checked.
+
 ## Requirements
 
 The host must provide the `CronCreate`, `CronList`, and `CronDelete` tools in an interactive Claude Code session. The skill uses the existing session; it needs no shell command, session identifier, separate model, or API key.
@@ -121,7 +125,7 @@ If the `CronCreate` call is denied or the tool is absent, the prompt was not sch
 
 ### Prompt does not arrive
 
-Scheduled prompts fire only while the session is idle. If the assistant is still working or waiting on another tool, the prompt waits. If the session was closed or resumed, pending jobs may not survive; the skill instructs the assistant to inspect the job list and report rather than resend automatically. See [schedule recovery](../skills/meta-prompting-claude/references/schedule-recovery.md).
+The conversation never shows the scheduled prompt itself; look for the assistant's arrival note instead. Scheduled prompts fire only while the session is idle. If the assistant is still working or waiting on another tool, the prompt waits. If the session was closed or resumed, pending jobs may not survive; the skill instructs the assistant to inspect the job list and report rather than resend automatically. See [schedule recovery](../skills/meta-prompting-claude/references/schedule-recovery.md).
 
 ## Development
 
