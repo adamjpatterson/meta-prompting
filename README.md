@@ -18,10 +18,11 @@ Choose the package for your client:
 
 - [Codex installation and usage](docs/codex.md)
 - [OpenCode installation and usage](docs/opencode.md)
+- [Claude Code installation and usage](docs/claude.md)
 
 ### Agent Skills specification
 
-Both skills follow the [Agent Skills specification](https://agentskills.io/specification), with client-specific instructions for Codex and OpenCode.
+All three skills follow the [Agent Skills specification](https://agentskills.io/specification), with client-specific instructions for Codex, OpenCode, and Claude Code.
 
 ## License
 
