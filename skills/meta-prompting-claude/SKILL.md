@@ -28,7 +28,7 @@ CronCreate
   recurring: false
 ```
 
-The tool result confirms acceptance and reports the next run time. Scheduled prompts fire only while the session is idle, at one-minute granularity. After acceptance, update the count and end the turn with a brief handoff. Wait for arrival as user input before responding; acceptance is not arrival. Respond as appropriate, then decide whether another prompt would help.
+The tool result confirms acceptance and reports the next run time. Scheduled prompts fire only while the session is idle, at one-minute granularity. After acceptance, update the count and end the turn with a brief handoff that states the scheduled prompt verbatim and the count, because Claude Code does not display scheduled prompts in the conversation. Wait for arrival as user input before responding; acceptance is not arrival. Open the response with a one-line arrival note naming the prompt number, answer as appropriate, then decide whether another prompt would help.
 
 Keep one prompt pending at a time and count each accepted prompt once. Respect newer user directions; a delayed prompt must not restart a stopped inquiry. If the pending prompt, goal, or count is unclear, stop and explain the uncertainty. If submission is uncertain, inspect `CronList` rather than automatically resending. For rejected calls and missing arrivals, see [schedule recovery](references/schedule-recovery.md).
 
