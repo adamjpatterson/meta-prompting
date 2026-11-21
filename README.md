@@ -24,6 +24,10 @@ Choose the package for your client:
 
 All three skills follow the [Agent Skills specification](https://agentskills.io/specification), with client-specific instructions for Codex, OpenCode, and Claude Code.
 
+## Credits
+
+Developed by Adam Patterson in collaboration with OpenAI Codex. Codex contributed the original implementation, the Codex and OpenCode packages, documentation, validation, and release preparation. Claude Code (Fable 5.1) contributed the Claude Code package, with review from Codex. Mistral contributed to the OpenCode delivery research and testing.
+
 ## License
 
 [MIT](LICENSE).

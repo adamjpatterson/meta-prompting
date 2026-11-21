@@ -16,3 +16,7 @@ Keep each package self-contained and specific to its host. Preserve freely compo
 Validate all packages and documentation links after edits. Keep prose paragraphs unwrapped; preserve line breaks needed by code, tables, and lists. For delivery changes, use a bounded live check when needed and distinguish acceptance from observed arrival. Do not invoke a separate model as a substitute for testing the active client's workflow.
 
 Preserve existing research records unless the user requests their removal.
+
+# Commit attribution
+
+Keep the user's configured Git author. For substantive Codex contributions, add `Co-authored-by: Codex <noreply@openai.com>` to the commit message. Preserve accurate co-author credit for other contributors when work is shared. Record attribution when creating commits; do not claim authorship merely for committing someone else's edits.
