@@ -5,7 +5,7 @@ workflow. It helps users and maintainers, including agents, see what was checked
 in which environment, and what remains untested. It is a reference for development;
 the operating instructions live in [SKILL.md](../SKILL.md).
 
-## Environment
+## Original test environment
 
 - Date: November 18, 2026.
 - Codex CLI: 0.169.0, Linux, Bash, an existing active Codex conversation.
@@ -58,6 +58,22 @@ preparation. The queued prompt subsequently arrived as user input and was
 recognized as belonging to the canceled inquiry. It was not answered and no
 further inquiry prompt was sent. This checks one observed ordering of stop and
 delivery, not every possible timing or context-loss scenario.
+
+## Shortened instructions — November 21, 2026
+
+- An independent subagent read the shortened skill and described a one-prompt
+  workflow, including waiting for arrival and responding before stopping. This
+  was a dry run; it sent no messages and found no missing mechanics.
+- A live one-prompt check in the active Codex conversation observed queue
+  acceptance, arrival as user input, a response, and stopping without another
+  send. This exercised the shortened instructions, not just their interpretation.
+- Separate subagents compared the current description with a capability-first
+  alternative. Both selected the skill in an initial reframing scenario. In a
+  second simulation with six scenarios and five available skills, both selected
+  meta-prompting for stalled diagnosis and unfocused onboarding, and not for the
+  four other tasks. These were stated choices, not observed activation during
+  task execution; the tests explicitly asked about selection and used a small
+  catalog. They showed no advantage for the alternative description.
 
 ## Limits
 

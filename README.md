@@ -197,13 +197,14 @@ when the goal is met or the allowance is exhausted. The assistant tracks the
 allowance itself.
 
 If sending fails with an uncertain outcome, the skill instructs the assistant
-to stop instead of retrying automatically: the prompt may already have been
-accepted. It also instructs the assistant to respect new user directions,
+to inspect delivery evidence before deciding how to recover, rather than resend
+automatically: the prompt may already have been accepted. It also instructs the
+assistant to respect new user directions,
 including a request to stop while a prompt is pending.
 
 ## Compatibility and validation
 
-Development checks used Codex CLI **0.169.0** on Linux with Bash and an active
+The original development checks used Codex CLI **0.169.0** on Linux with Bash and an active
 Codex conversation. See the [validation notes](skills/meta-prompting/references/validation.md) for the
 checks performed and their results.
 
@@ -239,9 +240,16 @@ to that folder so Codex can discover the working copy during development.
 The skill's behavior is defined in `skills/meta-prompting/SKILL.md`. Keep that
 file and the human-facing README consistent when changing the workflow.
 
-After editing, check that documentation links resolve and that the skill's name
-and description remain valid. If your Codex installation includes the
-skill-creator validator, use it to check the package metadata.
+After editing, check that documentation links resolve and validate the package
+with the [Agent Skills reference validator](https://github.com/agentskills/agentskills/tree/main/skills-ref).
+Install it in a separate development environment using its installation instructions,
+then run from this repository's root:
+
+```bash
+skills-ref validate skills/meta-prompting
+```
+
+The validator checks package metadata; it does not test prompt delivery or behavior.
 
 For workflow changes, try a short inquiry in an active Codex conversation. Verify
 that each queued prompt arrives in the same conversation, that the next prompt
