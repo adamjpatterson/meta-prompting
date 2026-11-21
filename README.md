@@ -21,10 +21,10 @@ The hypothesis is that this may allow the agent to correct unproductive trajecto
 Open Codex, then enter this in the Codex chat box:
 
 ```text
-Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting
+Use $skill-installer to install https://github.com/adamjpatterson/meta-prompting/tree/main/skills/meta-prompting into ~/.agents/skills using --dest.
 ```
 
-The skill will be installed to `$CODEX_HOME/skills/meta-prompting/`, normally `~/.codex/skills/meta-prompting/`.
+The skill will be installed to `~/.agents/skills/meta-prompting/`, available across your projects.
 
 ### Project-local installation
 
