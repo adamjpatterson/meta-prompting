@@ -114,8 +114,8 @@ The request has four parts:
 | Stop condition    | `stop when there is a concrete next action` | Describes when the inquiry has accomplished enough                         |
 
 The allowance is a ceiling, not a target. The assistant can stop earlier when the
-condition is met. You can omit the allowance and stop condition and let the
-assistant choose them from the task. Each queued prompt starts a subsequent
+condition is met. You can omit both: the assistant chooses an allowance and
+judges when the inquiry has clarified enough. Each queued prompt starts a subsequent
 conversation turn; the allowance counts those prompts, not tool calls.
 
 ### A first task
