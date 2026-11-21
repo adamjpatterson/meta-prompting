@@ -19,6 +19,10 @@ Choose the package for your client:
 - [Codex installation and usage](docs/codex.md)
 - [OpenCode installation and usage](docs/opencode.md)
 
+### Agent Skills specification
+
+Both skills follow the [Agent Skills specification](https://agentskills.io/specification), with client-specific instructions for Codex and OpenCode.
+
 ## License
 
 [MIT](LICENSE).
