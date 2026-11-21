@@ -43,6 +43,18 @@ One inquiry prompt was queued, then the user sent an actual stop instruction bef
 - A live one-prompt check in the active Codex conversation observed queue acceptance, arrival as user input, a response, and stopping without another send. This exercised the shortened instructions, not just their interpretation.
 - Separate subagents compared the current description with a capability-first alternative. Both selected the skill in an initial reframing scenario. In a second simulation with six scenarios and five available skills, both selected meta-prompting for stalled diagnosis and unfocused onboarding, and not for the four other tasks. These were stated choices, not observed activation during task execution; the tests explicitly asked about selection and used a small catalog. They showed no advantage for the alternative description.
 
+## GitHub installation and first use — November 21, 2026
+
+A separate Codex session in `meta-prompting-codex-test` followed the project-local installation and first-use instructions in the client guide. Evidence was supplied by the user as a GUI screenshot and the resulting conversation transcript.
+
+- The installer reported downloading `skills/meta-prompting-codex` from `adamjpatterson/meta-prompting` at `main` into the project's `.agents/skills/meta-prompting-codex` directory.
+- The GUI skill selector displayed “Meta-prompting for Codex” with Project scope.
+- `codex queue --help` exited successfully, with a nonfatal read-only-filesystem warning about PATH aliases.
+- The first delivery attempt failed during embedded app-server startup. The agent followed the recovery instructions and retried through the normal permission process without consuming the prompt allowance for the failed attempt.
+- The queued question appeared as a new user-input message in that conversation. The agent answered it and stopped at one prompt without another submission.
+
+This checks the documented GitHub installation, discovery, startup recovery, and one-prompt workflow for the renamed package. The installed CLI version was not separately recorded for this check.
+
 ## Limits
 
 Counts and stopping conditions are maintained in conversation context, not independently enforced. Context loss, ambiguous delivery, or different host behavior can prevent continuation. Cross-host compatibility, long inquiries, and automatic-selection reliability have not been systematically evaluated.
