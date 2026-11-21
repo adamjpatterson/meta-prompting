@@ -1,6 +1,7 @@
 ---
 name: meta-prompting
 description: Proactively reframe work when attempts repeat without progress, an untested premise drives the approach, complexity grows without clarifying the goal, or the conversation drifts. Construct useful context through self-generated prompts in the active conversation. Also use for explicit meta-prompting or recursive self-prompting requests.
+compatibility: Requires Codex with a shell tool, codex queue, and CODEX_THREAD_ID for the active conversation.
 ---
 
 # Meta-prompting
