@@ -2,7 +2,7 @@
 
 This package uses `codex queue` to deliver a prompt, end the current turn, and continue after arrival in the same conversation.
 
-These instructions target `main`. Published release `v0.1.1` uses the old `meta-prompting` package name.
+These instructions target `main`. Version `0.2.0` introduces the client-specific package names; earlier releases use `meta-prompting`.
 
 ## Migrating from meta-prompting
 

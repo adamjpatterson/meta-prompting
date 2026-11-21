@@ -4,7 +4,7 @@ license: MIT
 description: In OpenCode, proactively reframe work when attempts repeat without progress, an untested premise drives the approach, complexity grows without clarifying the goal, or the conversation drifts. Construct useful context through self-generated prompts in the active conversation. Also use for explicit meta-prompting or recursive self-prompting requests.
 compatibility: Requires OpenCode, shell access, opencode run, and a verified active session ID.
 metadata:
-  version: "0.2.0-dev"
+  version: "0.2.0"
 ---
 
 # Meta-prompting for OpenCode
