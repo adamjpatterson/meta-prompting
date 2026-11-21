@@ -4,10 +4,6 @@ This package uses `codex queue` to deliver a prompt, end the current turn, and c
 
 These instructions target `main`. Version `0.2.0` introduces the client-specific package names; earlier releases use `meta-prompting`.
 
-## Migrating from meta-prompting
-
-Locate your old `meta-prompting` installation and preserve local edits. Replace it with `meta-prompting-codex` in the same installation scope, then remove the old copy to avoid duplicate entries. Invoke the new package with `$meta-prompting-codex`.
-
 ## Installation
 
 ### User-account installation
