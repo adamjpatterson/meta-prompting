@@ -24,7 +24,7 @@ Claude Code discovers skills in its native [skill locations](https://code.claude
            references/
    ```
 
-4. Open Claude Code in the destination project and type `/meta-prompting-claude`. Claude Code watches its skill directories, so no restart should be needed; run `/reload-skills` if the skill does not appear. During development in the VS Code extension, a skill added through a symbolic link appeared only after a window reload, so reload the window or restart the session as a fallback.
+4. Open Claude Code in the destination project, type `/`, and look for `meta-prompting-claude` in the menu without submitting it. This checks discovery. To run the first inquiry, use the example under [Try it](#try-it) below. Claude Code watches its skill directories, so no restart should be needed; run `/reload-skills` if the skill does not appear. During development in the VS Code extension, a skill added through a symbolic link appeared only after a window reload, so reload the window or restart the session as a fallback.
 
 Use one installation scope to avoid duplicate entries. Do not install the Codex or OpenCode package for Claude Code sessions.
 
@@ -111,7 +111,7 @@ If a call is rejected before scheduling, the prompt was never submitted and the 
 
 ## Compatibility and validation
 
-The original development check used Claude Code **2.1.287** in the VS Code extension on Linux with an active interactive conversation. See the [validation notes](../skills/meta-prompting-claude/references/validation.md) for the checks performed, their results, and the checks that remain untested, including multi-prompt continuation.
+The original development check used Claude Code **2.1.287** in the VS Code extension on Linux with an active interactive conversation. See the [validation notes](../skills/meta-prompting-claude/references/validation.md) for the checks performed, including a two-prompt adaptive inquiry, their results, and the checks that remain untested.
 
 ## Troubleshooting
 

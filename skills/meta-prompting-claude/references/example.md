@@ -16,4 +16,4 @@ The assistant schedules that prompt, states it in the handoff as prompt 2 of 2, 
 
 Both prompts have been used. The assistant delivers the recommendation and check, then returns to the original task. The count and outcome remain in the conversation.
 
-This illustrates intended multi-prompt behavior; the recorded Claude Code live check covered one prompt.
+A recorded Claude Code live check followed this pattern with two prompts; see the [validation notes](validation.md).
