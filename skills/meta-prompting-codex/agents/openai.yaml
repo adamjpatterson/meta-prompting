@@ -1,5 +1,5 @@
 interface:
-  display_name: "Meta-prompting"
+  display_name: "Meta-prompting for Codex"
   short_description: "Shape context through self-generated inquiries"
 policy:
   allow_implicit_invocation: true
